@@ -1,0 +1,304 @@
+swagger: "2.0"
+info:
+  description: This is the swagger file that goes with our server code
+  version: "1.0.0"
+  title: Swagger REST Article
+consumes:
+  - "application/json"
+produces:
+  - "application/json"
+
+basePath: "/pets"
+
+# Paths supported by the server application
+paths:
+  /cats:
+    get:
+      operationId: "cat.read_all"
+      tags:
+        - "Cat"
+      summary: "Read the entire list of cats"
+      description: "Read the list of cats"
+      responses:
+        200:
+          description: "Successfully read cats list operation"
+          schema:
+            type: "array"
+            items:
+              properties:
+                name:
+                  type: "string"
+                breed:
+                  type: "string"
+                owner:
+                  type: "string"
+                timestamp:
+                  type: "string"
+    post:
+      operationId: "cat.create"
+      tags:
+        - "Cat"
+      summary: "Create a cat and add it to the cats list"
+      description: "Create a new cat in the cats list"
+      parameters:
+        - name: cat
+          in: body
+          description: Cat to create
+          required: True
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                description: name of cat to create
+              breed:
+                type: string
+                description: breed of cat to create
+              owner:
+                type: string
+                description: owner of cat to create
+      responses:
+        201:
+          description: "Successfully created cat in list"
+  /cats/{name}:
+    get:
+      operationId: "cat.read_one"
+      tags:
+        - "Cat"
+      summary: "Read one cat from the cat list"
+      description: "Read one cat from the cats list"
+      parameters:
+        - name: name
+          in: path
+          description: name of the cat to get from the list
+          type: string
+          required: True
+      responses:
+        200:
+          description: "Successfully read cat from cats list operation"
+          schema:
+            properties:
+              name:
+                type: "string"
+              breed:
+                type: "string"
+              owner:
+                type: "string"
+              timestamp:
+                type: "string"
+    put:
+      operationId: "cat.update"
+      tags:
+        - "Cat"
+      summary: "Update a cat in the cats list"
+      description: "Update a cat in the cats list"
+      parameters:
+        - name: name
+          in: path
+          description: name of the cat to update in the list
+          type: string
+          required: True
+        - name: cat
+          in: body
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              breed:
+                type: string
+              owner:
+                type: string
+      responses:
+        200:
+          description: "Successfully updated cat in cats list"
+    delete:
+      operationId: "cat.delete"
+      tags:
+        - "Cat"
+      summary: "Delete a cat from the cats list"
+      description: "Delete a cat"
+      parameters:
+        - name: name
+          in: path
+          type: string
+          required: True
+      responses:
+        200:
+          description: "Successfully deleted a cat from cats list"
+
+  /dogs:
+    get:
+      operationId: "dog.read_all"
+      tags:
+        - "Dog"
+      summary: "Read the entire list of dogs"
+      description: "Read the list of dogs"
+      responses:
+        200:
+          description: "Successfully read dog list operation"
+          schema:
+            type: "array"
+            items:
+              properties:
+                name:
+                  type: "string"
+                breed:
+                  type: "string"
+                owner:
+                  type: "string"
+                timestamp:
+                  type: "string"
+    post:
+      operationId: "dog.create"
+      tags:
+        - "Dog"
+      summary: "Create a dog and add it to the dogs list"
+      description: "Create a new dog in the dogs list"
+      parameters:
+        - name: dog
+          in: body
+          description: dog to create
+          required: True
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                description: name of dog to create
+              breed:
+                type: string
+                description: breed of dog to create
+              owner:
+                type: string
+                description: owner of dog to create
+      responses:
+        201:
+          description: "Successfully created dog in list"
+  /dogs/{name}:
+    get:
+      operationId: "dog.read_one"
+      tags:
+        - "Dog"
+      summary: "Read one dog from the dog list"
+      description: "Read one dog from the dog list"
+      parameters:
+        - name: name
+          in: path
+          description: name of the dog to get from the list
+          type: string
+          required: True
+      responses:
+        200:
+          description: "Successfully read dog from dogs list operation"
+          schema:
+            properties:
+              name:
+                type: "string"
+              breed:
+                type: "string"
+              owner:
+                type: "string"
+              timestamp:
+                type: "string"
+    put:
+      operationId: "dog.update"
+      tags:
+        - "Dog"
+      summary: "Update a dog in the dogs list"
+      description: "Update a dog in the dogs list"
+      parameters:
+        - name: name
+          in: path
+          description: name of the dog to update in the list
+          type: string
+          required: True
+        - name: dog
+          in: body
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              breed:
+                type: string
+              owner:
+                type: string
+      responses:
+        200:
+          description: "Successfully updated dog in dogs list"
+
+  /humans:
+    get:
+      operationId: "human.read_all"
+      tags:
+        - "Human"
+      summary: "Read the entire list of humans"
+      description: "Read the list of humans"
+      responses:
+        200:
+          description: "Successfully read humans list operation"
+          schema:
+            type: "array"
+            items:
+              properties:
+                name:
+                  type: "string"
+                age:
+                  type: "integer"
+                gender:
+                  type: "string"
+                timestamp:
+                  type: "string"
+    post:
+      operationId: "human.create"
+      tags:
+        - "Human"
+      summary: "Create a human and add it to the humans list"
+      description: "Create a new human in the humans list"
+      parameters:
+        - name: human
+          in: body
+          description: human to create
+          required: True
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                description: name of human to create
+              age:
+                type: integer
+                description: age of human to create
+              gender:
+                type: string
+                description: gender of human to create
+      responses:
+        201:
+          description: "Successfully created human in list"
+  /humans/{name}:
+    get:
+      operationId: "human.read_one"
+      tags:
+        - "Human"
+      summary: "Read one human from the human list"
+      description: "Read one human from the human list"
+      parameters:
+        - name: name
+          in: path
+          description: name of the human to get from the list
+          type: string
+          required: True
+      responses:
+        200:
+          description: "Successfully read human from humans list operation"
+          schema:
+            properties:
+              name:
+                type: "string"
+              age:
+                type: "integer"
+              gender:
+                type: "string"
+              timestamp:
+                type: "string"
